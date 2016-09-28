@@ -4,8 +4,7 @@ import "github.com/initiumsrc/binary"
 
 var rules map[int]int
 
-func Get(width int, rule int, initialRow []int) [][]int {
-	height := int(float64(width) * 1.7778)
+func Get(initialRow []int, height int, rule int) [][]int {
 	rules = constructRules(rule)
 
 	matrix := make([][]int, height, height)
