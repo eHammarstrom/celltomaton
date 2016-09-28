@@ -1,34 +1,21 @@
-package main
+package celltomaton
 
-import (
-	"fmt"
-	"github.com/initiumsrc/binary"
-	"os"
-)
+import "github.com/initiumsrc/binary"
 
 var rules map[int]int
 
-func main() {
-	args := os.Args[1:]
+func Get(width int, rule int, initialRow []int) [][]int {
+	height := int(float64(width) * 1.7778)
+	rules = constructRules(rule)
 
-	for i := 0; i < len(args); i++ {
-		fmt.Println(args[i])
+	matrix := make([][]int, height, height)
+	matrix[0] = initialRow
+
+	for i := 1; i < height; i++ {
+		matrix[i] = generateRow(matrix[i-1])
 	}
 
-	rules = constructRules(3)
-
-	matrix := make([][]int, 10, 10)
-
-	initialRow := make([]int, 20, 20)
-	initialRow[5] = 1
-	initialRow[0] = 1
-	initialRow[1] = 1
-
-	matrix[0] = initialRow
-	matrix[1] = generateRow(initialRow)
-
-	fmt.Println(matrix[0])
-	fmt.Println(matrix[1])
+	return matrix
 }
 
 func constructRules(rule int) map[int]int {
@@ -58,7 +45,7 @@ func generateRow(prev []int) []int {
 			last := []int{prev[i-1], prev[i], prev[0]}
 			genArr[i] = rules[binary.BinaryArrayToInt(&last)]
 		} else {
-			current := prev[i-1 : i+1]
+			current := prev[i-1 : i+2]
 			genArr[i] = rules[binary.BinaryArrayToInt(&current)]
 		}
 	}
