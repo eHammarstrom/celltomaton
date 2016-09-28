@@ -1,6 +1,6 @@
 # celltomaton
 
-Go package for generating a 2D Cellular Automaton pattern returned as a 16:9 matrix (for now)
+Go package for generating a one-dimensional Cellular Automaton pattern returned as a 16:9 matrix (for now)
 
 ## Installation
 
