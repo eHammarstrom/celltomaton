@@ -1,4 +1,4 @@
-package celltomaton
+package main
 
 import "github.com/initiumsrc/binary"
 
@@ -44,7 +44,7 @@ func generateRow(prev []int) []int {
 			last := []int{prev[i-1], prev[i], prev[0]}
 			genArr[i] = rules[binary.BinaryArrayToInt(&last)]
 		} else {
-			current := prev[i-1 : i+2]
+			current := []int{prev[i-1], prev[i], prev[i+1]}
 			genArr[i] = rules[binary.BinaryArrayToInt(&current)]
 		}
 	}
