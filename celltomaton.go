@@ -1,4 +1,4 @@
-package main
+package celltomaton
 
 import "github.com/initiumsrc/binary"
 
